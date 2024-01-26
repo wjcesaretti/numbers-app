@@ -9,15 +9,18 @@
 <body>
     <input  id="a"> +
     <input  id="b"> 
-    <button id='sum' onclick="add()">=</button> 
-    <label  id="c"></label>
+    <button id='s' onclick="add()">=</button> 
+    <label  id="sum"></label>
 
     <script>
-        function add() {
-            let a = document.getElementById('a').value
-            let b = document.getElementById('b').value
-            let s = Number(a) + Number(b)
-            document.getElementById('c').innerHTML = s
+        async function add() {
+            const operand1Input = document.getElementById('a')
+            const operand2Input = document.getElementById('b')
+            let n = operand1Input.value
+            let m = operand2Input.value
+            const response = await fetch('http://localhost:3000/add/' + n + '/' + m)
+            const sum = await response.json()
+            document.getElementById('sum').innerHTML = sum
         }
     </script>
 </body>
